@@ -30,7 +30,6 @@ def sentiment():
             a = polarity_scores_roberta(temp['text'])[1]
             temp['sentiment'] = a['Status']
             count +=1
-        
     return jsonify(json_)
 
 if __name__ == "__main__":
