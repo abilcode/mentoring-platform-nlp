@@ -20,7 +20,6 @@ def translate():
 @app.route("/sentiment",methods=['POST'])
 def sentiment():
     json_      = request.json
-    #sentiment  = polarity_scores_roberta(json_)
     count = 0
     for i in json_:
         if 'text' in json_[count]:
