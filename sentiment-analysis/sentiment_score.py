@@ -19,9 +19,9 @@ def polarity_scores_roberta(data):
     scores = output[0][0].detach().numpy()
     scores = softmax(scores)
     scores_dict = {
-        'roberta_negative' : scores[0],
-        'roberta_neutral'  : scores[1],
-        'roberta_positive' : scores[2]
+        'negative' : scores[0],
+        'neutral'  : scores[1],
+        'positive' : scores[2]
     }
 
     max_value = max(scores_dict, key=lambda k: scores_dict[k])
@@ -34,6 +34,7 @@ def read_data(data='../sentiment-analysis/sample.json'):
     data = data
     with open(data, 'r') as file:
         input = json.load(file)
+    input = data
     for dictionary in input:
     # Print the contents of the dictionary
         if 'text' in dictionary:
@@ -43,12 +44,13 @@ def read_data(data='../sentiment-analysis/sample.json'):
 
 if __name__=="__main__":
     
-    data = read_data()
-    for dictionary in data:
-    # Print the contents of the dictionary
-        for key, value in dictionary.items():
-            print(f'{key}: {value}')
+    # data = read_data()
+    # for dictionary in data:
+    # # Print the contents of the dictionary
+    #     for key, value in dictionary.items():
+    #         print(f'{key}: {value}')
     
-
+    
+    print(polarity_scores_roberta('I Hate u')[1]['Status'])
 
    
