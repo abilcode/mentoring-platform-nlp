@@ -12,10 +12,13 @@ def hi():
 @app.route("/translate",methods=['POST'])
 def translate():
     json_      = request.json
-    translated = to_translate(json_[0]) 
-    return {'input':[i for i in translated.input],
-            'outout':[i for i in translated.translated]
-            }
+    count = 0
+    for i in json_:
+        temp = json_[count]
+        if 'text' in temp:
+            temp['translate'] = to_translate(dest='en',data=temp['text'])
+        count +=1
+    return jsonify(json_)
 
 @app.route("/sentiment",methods=['POST'])
 def sentiment():
