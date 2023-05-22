@@ -38,8 +38,8 @@ def read_data(data='../sentiment-analysis/sample.json'):
     input = data
     for dictionary in input:
     # Print the contents of the dictionary
-        if 'text' in dictionary:
-            _ , dictionary['sentiment'] = polarity_scores_roberta(dictionary['text'])
+        if 'feedback' in dictionary:
+            _ , dictionary['sentiment'] = polarity_scores_roberta(dictionary['feedback'])
     return input
 
 def to_translate(data,dest='en'):

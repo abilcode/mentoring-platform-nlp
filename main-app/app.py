@@ -15,8 +15,8 @@ def translate():
     count = 0
     for i in json_:
         temp = json_[count]
-        if 'text' in temp:
-            temp['translate'] = to_translate(dest='en',data=temp['text'])
+        if 'feedback' in temp:
+            temp['translate'] = to_translate(dest='en',data=temp['feedback'])
         count +=1
     return jsonify(json_)
 
@@ -25,9 +25,9 @@ def sentiment():
     json_      = request.json
     count = 0
     for i in json_:
-        if 'text' in json_[count]:
+        if 'feedback' in json_[count]:
             temp = json_[count]
-            a = polarity_scores_roberta(temp['text'])[1]
+            a = polarity_scores_roberta(temp['feedback'])[1]
             temp['sentiment'] = a['Status']
             count +=1
     return jsonify(json_)
